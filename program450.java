@@ -17,6 +17,7 @@ class node
 class DoublyLL
 {
     private node first;
+    private node last;
     
     private int iCount;
 
@@ -25,30 +26,187 @@ class DoublyLL
         System.out.println("Object of DoublyLL gets created.");
         
         this.first = null;
+        this.last = null;
         
         this.iCount = 0;
     }
 
     public void InsertFirst(int no)
-    {}
+    {
+        node newn = null;
+
+        newn = new node(no);
+
+        if(this.first == null && this.last == null)
+        {
+            this.first = newn;
+            this.last = newn;
+        }
+        else
+        {
+            this.first.prev = newn;
+            newn.next = this.first;
+
+            this.first = newn;
+        }
+
+        this.iCount++;
+    }
 
     public void InsertLast(int no)
-    {}
+    {
+        node newn = null;
 
-    public void InsertAtPos(int no, int pos)
-    {}
+        newn = new node(no);
+
+        if(this.first == null && this.last == null)
+        {
+            this.first = newn;
+            this.last = newn;
+        }
+        else 
+        {
+            newn.prev = this.last;
+            this.last.next = newn;
+            this.last = newn;
+
+            newn.next = null;            
+        }
+
+        this.iCount++;
+    }
 
     public void DeleteFirst()
-    {}
+    {
+        if(this.first == null && this.last == null)
+        {
+            return;
+        }
+        else if(this.first == this.last)
+        {
+           this.first = this.last = null;  
+        }
+        else
+        {
+            this.first = this.first.next;
+            this.first.prev = null;
+        }
+
+        this.iCount--;
+    }
     
     public void DeleteLast()
-    {}
+    {
+
+        if(this.first == null && this.last == null)
+        {
+            return;
+        }
+        else if(this.first == this.last)
+        {
+           this.first = this.last = null;  
+        }
+        else
+        {
+            this.last = this.last.prev;
+            this.last.next = null;
+        }
+
+        this.iCount--; 
+    }
     
+    
+    public void InsertAtPos(int no, int pos)
+    {
+        node newn = null;
+        node temp = null;
+        int iCnt = 0;
+
+        newn = new node(no);
+
+        if(pos < 1 || pos > iCount+1)
+        {
+            System.out.println("Invalid position...");
+            return;
+        }
+
+        if(pos == 1)
+        {
+            this.InsertFirst(no);
+        }
+        else if(pos == iCount+1)
+        {
+            this.InsertLast(no);
+        }
+        else
+        {
+            temp = this.first;
+
+            for(iCnt = 1; iCnt < pos-1; iCnt++)
+            {
+                temp = temp.next;
+            }
+
+            newn.next = temp.next;
+            newn.prev = temp;
+            temp.next = newn;
+            newn.next.prev = newn;
+
+            this.iCount++;
+        }
+    }
+
     public void DeleteAtPos(int pos)
-    {}
+    {
+        node temp = null;
+        int iCnt = 0;
+
+        if(pos < 1 || pos > iCount)
+        {
+            System.out.println("Invalid position...");
+            return;
+        }
+
+        if(pos == 1)
+        {
+            this.DeleteFirst();
+        }
+        else if(pos == iCount)
+        {
+            this.DeleteLast();
+        }
+        else
+        {
+            temp = this.first;
+
+            for(iCnt = 1; iCnt < pos-1; iCnt++)
+            {
+                temp = temp.next;
+            }
+
+            temp.next = temp.next.next;
+            temp.next.prev = temp;
+
+            System.gc();
+
+            this.iCount--;
+        }
+    }
     
     public void Display()
-    {}
+    {
+        node temp = null;
+
+        temp = this.first;
+
+        while(temp != null)
+        {
+            System.out.print("| "+temp.data+"| <=>");
+            temp = temp.next;
+        }
+
+        System.out.println("null");
+    }
 
     public int Count()
     {
