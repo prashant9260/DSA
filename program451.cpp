@@ -25,7 +25,10 @@ class SignlyLL
         }
 
         void InsertFirst(int no)
-        {}
+        {
+            if(*first == NULL)
+
+        }
 
         void InsertLast(int no)
         {}
@@ -55,7 +58,7 @@ class SignlyLL
 int main()
 {
     SignlyLL obj;
-    int iRet = 0;
+    int iRet = 0;                                                                                                        
 
     obj.InsertFirst(51);
     obj.InsertFirst(21);

@@ -25,7 +25,10 @@ class SignlyLL
         }
 
         void InsertFirst(int no)
-        {}
+        {
+            if(*first == NULL)
+
+        }
 
         void InsertLast(int no)
         {}

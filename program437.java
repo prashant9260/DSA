@@ -16,6 +16,6 @@ class program437
     {
         SinglyLL obj = null;
 
-        obj= new SinglyLL();
+        obj = new SinglyLL();
     }
 }

@@ -49,7 +49,7 @@ class SignlyLL
             newn->data = no;
             newn->next = NULL;
 
-            if(first == NULL)
+            if(iCount == 0)     //Updated
             {
                 first = newn;
             }
