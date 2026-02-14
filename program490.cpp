@@ -520,7 +520,7 @@ int main()
     
     obj1->Display();
     iRet = obj1->Count();
-    cout<<"Number of nodes are : "<<iRet<<"\n";
+    cout<<"Number of nodes are : "<<iRet<<"\n";     
     
     obj1->InsertLast(101);
     obj1->InsertLast(111);
